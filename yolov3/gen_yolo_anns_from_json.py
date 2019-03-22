@@ -15,24 +15,26 @@ def convert(size, box):
     h = h * dh
     return (x, y, w, h)
 
-imgdir = sys.argv[1]
-jsondir = sys.argv[2]
-txtdir = sys.argv[3]
+if __name__ == '__main__':
+    if len(sys.argv != 4):
+        print "Usage: python gen.py imgdir/ jsondir/ txtdir/"
 
-namelist = os.listdir(jsondir)
-for name in namelist:
-    prefix = os.path.splitext(name)[0]
-
-    imgpath = os.path.join(imgdir, prefix+".jpg")
-    jsonpath = os.path.join(jsondir, prefix+".json")
-    txtpath = os.path.join(txtdir, prefix+".txt")
-
-    img = cv2.imread(imgpath)
-    height, width = img.shape[:2]
-    with open(jsonpath, 'r') as f:
-        bbs = json.load(f)
-    of = open(txtpath, 'w')
-    for bb in bbs:
-        x, y, w, h = convert((width, height), bb)
-        of.write("%d\t%f\t%f\t%f\t%f\n"%(0,x,y,w,h))
-    of.close()
+    imgdir = sys.argv[1]
+    jsondir = sys.argv[2]
+    txtdir = sys.argv[3]
+    
+    namelist = os.listdir(jsondir)
+    for name in namelist:
+        prefix = os.path.splitext(name)[0]
+        imgpath = os.path.join(imgdir, prefix+".jpg")
+        jsonpath = os.path.join(jsondir, prefix+".json")
+        txtpath = os.path.join(txtdir, prefix+".txt")
+        img = cv2.imread(imgpath)
+    	height, width = img.shape[:2]
+    	with open(jsonpath, 'r') as f:
+            bbs = json.load(f)
+	of = open(txtpath, 'w')
+	for bb in bbs:
+            x, y, w, h = convert((width, height), bb)
+    	    of.write("%d\t%f\t%f\t%f\t%f\n"%(0,x,y,w,h))
+        of.close()

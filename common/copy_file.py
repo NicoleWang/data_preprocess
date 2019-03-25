@@ -1,5 +1,6 @@
 import sys, os
 from shutil import copyfile
+import argparse
 
 def parse_args():
     #parse input arguments
@@ -29,6 +30,7 @@ else :
         if args.extname is None:
             namelist = [x.strip() for x in f.readlines()]
         else:
-            namelist = [x.strip().replace(x.[-4:], args.extname) for x in f.readlines()]
+            pass
+            #namelist = [x.strip().replace(x.[-4:], args.extname) for x in f.readlines()]
 do_copy(srcdir, dstdir, namelist)
 

@@ -16,8 +16,9 @@ def convert(size, box):
     return (x, y, w, h)
 
 if __name__ == '__main__':
-    if len(sys.argv != 4):
+    if len(sys.argv) != 4:
         print "Usage: python gen.py imgdir/ jsondir/ txtdir/"
+        sys.exit(0)
 
     imgdir = sys.argv[1]
     jsondir = sys.argv[2]

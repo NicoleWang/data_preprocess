@@ -7,6 +7,7 @@ import cv2
 indir = sys.argv[1]
 imgdir = sys.argv[2]
 outdir = sys.argv[3]
+class_text = sys.argv[4]
 #cate_map = {1:'coca', 2:'sprites', 3:'schweppes', 4:'watsons'}
 
 namelist = os.listdir(indir)
@@ -32,7 +33,7 @@ for idx, name in enumerate(namelist):
 
     node_root = Element('annotation')
     node_folder = SubElement(node_root, 'folder')
-    node_folder.text = 'Person'
+    node_folder.text = class_text
     #file name
     node_filename = SubElement(node_root, 'filename')
     node_filename.text = imname
